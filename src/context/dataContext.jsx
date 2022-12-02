@@ -17,10 +17,44 @@ export const DataProvider = (props) => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      await fetch(baseUrl + "/products")
+      await fetch(baseUrl + "/products?limit=100")
         .then((res) => res.json())
-        .then((data) => setProducts(data))
-        .finally((data) => console.log(data));
+        .then((data) => {
+          setProducts(data.products);
+          console.log(data.products);
+        });
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  const fetchUsers = async () => {
+    setLoading(true);
+    try {
+      await fetch(baseUrl + "/users?limit=100")
+        .then((res) => res.json())
+        .then((data) => {
+          setUsers(data.users);
+          console.log(data.users);
+        });
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  const fetchPosts = async () => {
+    setLoading(true);
+    try {
+      await fetch(baseUrl + "/posts?limit=150")
+        .then((res) => res.json())
+        .then((data) => {
+          setPosts(data.posts);
+          console.log(data.posts);
+        });
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -30,10 +64,16 @@ export const DataProvider = (props) => {
 
   useEffect(() => {
     fetchProducts();
+    fetchUsers();
+    fetchPosts();
   }, []);
 
   const value = {
     products,
+    users,
+    posts,
+    isLoading,
+    setLoading,
   };
 
   return (
