@@ -1,24 +1,30 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const SingleCard = () => {
+const SingleCard = ({ product }) => {
   return (
-    <div className="single-grid-item" key={i}>
+    <div className="single-grid-item">
       <div className="item-wrapper">
         <div className="item-img-container">
-          <Link to={`/products/${m.id}`}>
+          <Link to={`/react-ecommerce-fetch-api/products/${product.id}`}>
             <img
-              src={m.images.length > 1 ? m.images[1] : m.images}
-              alt={m.title}
-              loading={m.id > 10 ? "lazy" : "eager"}
+              src={
+                product.images.length > 1 ? product.images[1] : product.images
+              }
+              alt={product.title}
+              loading={product.id > 10 ? "lazy" : "eager"}
             />
           </Link>
         </div>
-
-        <Link to={`/products/${m.id}`}>
-          <h2>{m.title}</h2>
-        </Link>
-        <span>${m.price}</span>
-        <span>{m.rating}</span>
+        <div className="details-container">
+          <Link to={`/react-ecommerce-fetch-api/products/${product.id}`}>
+            <h2>{product.title}</h2>
+          </Link>
+          <div className="details">
+            <span>${product.price}</span>
+            <span>{product.rating}</span>
+          </div>
+        </div>
       </div>
     </div>
   );
