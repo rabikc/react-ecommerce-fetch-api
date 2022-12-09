@@ -25,7 +25,7 @@ function App() {
               }
             ></Route>
             <Route
-              path="/"
+              path="/products/:productId"
               exact
               element={
                 <React.Suspense fallback={"Loading..."}>

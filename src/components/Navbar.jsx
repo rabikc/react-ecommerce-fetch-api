@@ -1,7 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  return <nav className="page-navigation">Navbar</nav>;
+  return (
+    <header className="page-header">
+      <div className="section-container">
+        <nav className="page-navigation">
+          <div className="logo-container">
+            <Link to={"/"}>
+              <img src="/favicon/android-chrome-192x192.png" alt="" />
+            </Link>
+          </div>
+        </nav>
+      </div>
+    </header>
+  );
 };
 
 export default Navbar;
